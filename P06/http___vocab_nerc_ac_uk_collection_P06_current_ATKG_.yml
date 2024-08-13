@@ -12,7 +12,7 @@ labels:
     path: http://www.w3.org/2004/02/skos/core#definition
     original: Unit based on one atom in a SI standard unit of mass.
     translations:
-      - fr: ""
+      - fr: iii
       - es: ""
       - de: ""
       - it: ""
