@@ -18,11 +18,15 @@ const Collection = () => {
       // console.log(`github_token : ${sessionStorage.getItem("github_token")}`);
       // console.log(`repo : ${process.env.REACT_APP_REPO}`);
       try {
-        const response = await axios.post(`${process.env.REACT_APP_BACK_URL}/api/github/content`, {
-            token: sessionStorage.getItem("github_token"),
-            path: "config.yml",
+        const response = await axios.get(`${process.env.REACT_APP_BACK_URL}/api/github/content`, {
+          params: {
             repo: process.env.REACT_APP_REPO,
-          });
+            path: "config.yml"
+          },
+          headers: {
+            'Authorization': sessionStorage.getItem("github_token")
+          }
+        });
         const content = parse(response.data);
         // console.log(content);
         setContent(content);
@@ -47,13 +51,13 @@ const Collection = () => {
   return (
     <div>
       <form action="#/display" method="get">
-        <label htmlFor="collection">Select the collection :</label>
+        <label htmlFor="collection">Select the collection : </label>
         <select id="collection" name="collection" required>
           {content.sources.map((source) => (
             <option key={source.name} value={source.name}>{source.name}</option>
           ))}
         </select><br />
-        <label htmlFor="languageselect">Select translation language :</label>
+        <label htmlFor="languageselect">Select translation language : </label>
         <select id="languageselect" name="languageselect" required>
           {content.target_languages.map((language) => (
             <option key={language} value={language}>{language}</option>

@@ -14,9 +14,9 @@ const Callback = () => {
       const params = new URLSearchParams(window.location.search);
       // console.log("param");
       // console.log(params);
-      const paramsall = new URLSearchParams(window.location);
-      console.log("param all");
-      console.log(paramsall);
+      // const paramsall = new URLSearchParams(window.location);
+      // console.log("param all");
+      // console.log(paramsall);
       const code = params.get('code');
       // console.log(code);
       try {

@@ -15,11 +15,16 @@ const Merge = () => {
       const pullnumber = params.get('pullnumber');
       // console.log(pullnumber)
       try {
-        const response = await axios.post(`${process.env.REACT_APP_BACK_URL}/api/github/pull`, {
-          token: sessionStorage.getItem("github_token"),
-          repo: process.env.REACT_APP_REPO,
-          pullnumber,
-        });
+        const response = await axios.put(`${process.env.REACT_APP_BACK_URL}/api/github/pull`, {
+            repo: process.env.REACT_APP_REPO,
+            pullnumber,
+          },
+          {
+            headers: {
+              'Authorization': sessionStorage.getItem("github_token")
+            }
+          } 
+        );
         // console.log(response.data)
         navigate('/changed');
       } catch (error) {

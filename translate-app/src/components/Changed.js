@@ -21,9 +21,13 @@ const Changed = () => {
         }
         const fetchData = async () => {
             try {
-                const response = await axios.post(`${process.env.REACT_APP_BACK_URL}/api/github/changed`, {
-                    token: sessionStorage.getItem("github_token"),
-                    repo: process.env.REACT_APP_REPO,
+                const response = await axios.get(`${process.env.REACT_APP_BACK_URL}/api/github/changed`, {
+                    params: {
+                        repo: process.env.REACT_APP_REPO
+                    },
+                        headers: {
+                        'Authorization': sessionStorage.getItem("github_token")
+                    }
                 });
 
                 if (response.data.compare) {

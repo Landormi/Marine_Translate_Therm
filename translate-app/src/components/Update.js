@@ -19,13 +19,18 @@ const Update = () => {
                 translations[key] = decodeURIComponent(value);
             });
             // console.log(translations);
-            await axios.post(`${process.env.REACT_APP_BACK_URL}/api/github/update`, {
-                token: sessionStorage.getItem("github_token"),
-                path,
-                repo: process.env.REACT_APP_REPO,
-                translations,
-                language,
-            });
+            await axios.put(`${process.env.REACT_APP_BACK_URL}/api/github/update`,{
+                    path,
+                    repo: process.env.REACT_APP_REPO,
+                    translations,
+                    language,
+                },
+                {
+                    headers: {
+                        'Authorization': sessionStorage.getItem("github_token")
+                    }
+                }
+            );
             // console.log(`/display?collection=${path.split('/')[0]}&languageselect=${language}`);
             // console.log("/display?collection=P06&languageselect=fr");
             navigate(`/display?collection=${path.split('/')[0]}&languageselect=${language}`);

@@ -29,10 +29,14 @@ const Translate = () => {
             //     sessionStorage.setItem("language", languageselect);
             // }
             try {
-                const response = await axios.post(`${process.env.REACT_APP_BACK_URL}/api/github/content`, {
-                    token: sessionStorage.getItem("github_token"),
-                    path,
-                    repo: process.env.REACT_APP_REPO,
+                const response = await axios.get(`${process.env.REACT_APP_BACK_URL}/api/github/content`, {
+                    params: {
+                        repo: process.env.REACT_APP_REPO,
+                        path
+                    },
+                        headers: {
+                        'Authorization': sessionStorage.getItem("github_token")
+                    }
                 });
                 const content = parse(response.data);
                 // console.log(content);

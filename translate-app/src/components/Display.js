@@ -34,10 +34,14 @@ const Display = () => {
             }
             try {
                 // console.log("collection try:" + collection);
-                const response = await axios.post(`${process.env.REACT_APP_BACK_URL}/api/github/list`, {
-                    token: sessionStorage.getItem("github_token"),
-                    path: collection,
-                    repo: process.env.REACT_APP_REPO,
+                const response = await axios.get(`${process.env.REACT_APP_BACK_URL}/api/github/list`, {
+                    params: {
+                        repo: process.env.REACT_APP_REPO,
+                        path: collection
+                    },
+                        headers: {
+                        'Authorization': sessionStorage.getItem("github_token")
+                    }
                 });
                 const content = response.data
                 setContent(content)
