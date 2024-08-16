@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,6 +12,7 @@ const Callback = () => {
     }
     const fetchToken = async () => {
       const params = new URLSearchParams(window.location.search);
+      console.log("REACT_APP_CLIENT_ID"+process.env.REACT_APP_CLIENT_ID)
       // console.log("param");
       // console.log(params);
       // const paramsall = new URLSearchParams(window.location);
@@ -25,10 +26,10 @@ const Callback = () => {
           code: code,
         });
         // console.log("callback3")
-        // console.log(response)
+        console.log(response)
         const { access_token } = response.data;
         sessionStorage.setItem('github_token', access_token);
-        // console.log(access_token)
+        console.log(access_token)
         navigate('/collection');
       } catch (error) {
         console.error('Erreur lors de l\'obtention du token:', error);

@@ -77,7 +77,7 @@ const Translate = () => {
 
     return (
         <div>
-            <h1>Contenu du fichier</h1>
+            <h1>File's content</h1>
             <h2><a href={`#/display`}>Go Back</a></h2>
             <form method="GET" action={`#/update`}>
                 <ul>

@@ -5,6 +5,9 @@ const Login = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (sessionStorage.getItem("github_token")) {
+      if(sessionStorage.getItem("github_token")==="undefined"){
+        sessionStorage.clear()
+      }
       navigate('/collection');
     }
   }, [navigate]);

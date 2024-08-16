@@ -10,12 +10,12 @@ const Collection = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!sessionStorage.getItem("github_token")) {
+    if (!sessionStorage.getItem("github_token") || sessionStorage.getItem("github_token") === "undefined") {
       navigate('/');
     }
     const fetchToken = async () => {
       // console.log(`url : ${process.env.REACT_APP_BACK_URL}`);
-      // console.log(`github_token : ${sessionStorage.getItem("github_token")}`);
+      console.log(`github_token : ${sessionStorage.getItem("github_token")}`);
       // console.log(`repo : ${process.env.REACT_APP_REPO}`);
       try {
         const response = await axios.get(`${process.env.REACT_APP_BACK_URL}/api/github/content`, {
